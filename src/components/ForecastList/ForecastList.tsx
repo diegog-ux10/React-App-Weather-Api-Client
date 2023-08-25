@@ -13,8 +13,10 @@ const ForecastList: React.FC = () => {
   const { forecast } = useContext(WeatherContext) as WeatherContextType;
 
   return (
-    <Grid container spacing={2} flexWrap="wrap" justifyContent="space-around">
+    <Grid container spacing={2} flexWrap="wrap" justifyContent="space-between">
       {forecast?.daily.map((day: Day, index) => {
+        console.log(day);
+        
         if (index > 4) return;
         return (
           <Grid item sx={{ width: "182px" }}>
@@ -24,6 +26,7 @@ const ForecastList: React.FC = () => {
               index={index}
               maxTemp={day.temp.max}
               minTemp={day.temp.min}
+              weather={day.weather[0].main}
             />
           </Grid>
         );

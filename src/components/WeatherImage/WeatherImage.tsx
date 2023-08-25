@@ -15,22 +15,24 @@ import Sleet from "../../assets/Sleet.png";
 
 export type WeatherImageProps = {
   image: string;
+  width?: string;
 };
 
-const WeatherImage: React.FC<WeatherImageProps> = ({ image }) => {
-
+const WeatherImage: React.FC<WeatherImageProps> = ({ image, width }) => {
   return (
     <Box>
-      {image === "Clouds" && <img src={HeavyCloud} alt="" />}
-      {image === "Rain" && <img src={HeavyRain} alt="" />}
-      {image === "Haze" && <img src={LightCloud} alt="" />}
-      {image === "Clear" && <img src={Clear} alt="" />}
-      {image === "Hail" && <img src={Hail} alt="" />}
-      {image === "Shower" && <img src={Shower} alt="" />}
-      {image === "Snow" && <img src={Snow} alt="" />}
-      {image === "Thunderstorm" && <img src={Thunderstorm} alt="" />}
+      {image === "Clouds" && <img src={HeavyCloud} alt="" width={width} />}
+      {image === "Rain" && <img src={HeavyRain} alt="" width={width} />}
+      {image === "Haze" && <img src={LightCloud} alt="" width={width} />}
+      {image === "Clear" && <img src={Clear} alt="" width={width} />}
+      {image === "Hail" && <img src={Hail} alt="" width={width} />}
+      {image === "Shower" && <img src={Shower} alt="" width={width} />}
+      {image === "Snow" && <img src={Snow} alt="" width={width} />}
+      {image === "Thunderstorm" && (
+        <img src={Thunderstorm} alt="" width={width} />
+      )}
       {image === "Sleet" && <img src={Sleet} alt="" />}
-      {image === "Light Rain" && <img src={LightRain} alt="" />}
+      {image === "Light Rain" && <img src={LightRain} alt="" width={width} />}
     </Box>
   );
 };
