@@ -24,7 +24,7 @@ import {
 import { theme } from "../../theme/theme";
 import { WeatherImage } from "../WeatherImage";
 
-import background from "../../assets/sidebar-background.png";
+import background from "../../../public/sidebar-background.png";
 
 const SideBar: React.FC = () => {
   const {
