@@ -7,7 +7,7 @@ import {
   WeatherContextType,
 } from "../../context/WeatherContext";
 import { Day } from "../../models/day";
-import { DayForecastCard } from "../DayForecastCard";
+import { DayForecastCard } from "..";
 
 const ForecastList: React.FC = () => {
   const { forecast } = useContext(WeatherContext) as WeatherContextType;

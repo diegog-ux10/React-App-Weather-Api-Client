@@ -22,16 +22,21 @@ export const WeatherProvider = ({ children }: WeatherProviderProps) => {
     fetchData(currentCity);
 
     async function fetchData(city: string) {
-      setLoading(true);
-      const res = await weatherApi.getWeather(city);
-
-      setCurrentCityData(res.data);
-
-      const { lon, lat } = res.data.coord;
-      const data = await weatherApi.getForecast(lat, lon);
-
-      setForecast(data.data);
-      setLoading(false);
+      try {
+        setLoading(true);
+        const res = await weatherApi.getWeather(city);
+  
+        setCurrentCityData(res.data);
+  
+        const { lon, lat } = res.data.coord;
+        const data = await weatherApi.getForecast(lat, lon);
+  
+        setForecast(data.data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+     
     }
   }, [currentCity]);
 

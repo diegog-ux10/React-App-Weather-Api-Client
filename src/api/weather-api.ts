@@ -26,7 +26,7 @@ export const weatherApi = {
 
   getForecast: (lat: string, lon: string) => {
     return instance.get("onecall", {
-      params: { lat, lon, appid: "44f1b0b0e9952ff9fbe6a475ec8b5f1a", cnt: 5, units: "metric", },
+      params: { lat, lon, appid: "44f1b0b0e9952ff9fbe6a475ec8b5f1a", cnt: 5, units: "metric" },
     });
   },
 };

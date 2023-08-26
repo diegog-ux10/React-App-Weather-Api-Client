@@ -5,9 +5,9 @@ import "./App.css";
 import { SideBar } from "./components/SideBar";
 
 import { WeatherContext, WeatherContextType } from "./context/WeatherContext";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { theme } from "./theme/theme";
-import { ForecastList } from "./components/ForecastList";
+import { ForecastList, WeatherDetails } from "./components";
 
 function App() {
   const { currentCity } = useContext(WeatherContext) as WeatherContextType;
@@ -21,14 +21,29 @@ function App() {
             width: "70%",
             height: "100%",
             backgroundColor: theme.palette.primary.main,
-            padding: "80px"
+            padding: "120px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "48px",
           }}
         >
           <Box>
             <ForecastList />
           </Box>
           <Box>
-            <h1>Todays HighLights</h1>
+            <Box sx={{display: "flex", flexDirection: "column", gap: "36px"}}>
+              <Typography
+                variant="h2"
+                sx={{
+                  fontWeight: 700,
+                  fontSize: "24px",
+                  color: theme.palette.grayLight.main,
+                }}
+              >
+                Todays HighLights
+              </Typography>
+              <WeatherDetails />
+            </Box>
           </Box>
         </Box>
       </Box>
