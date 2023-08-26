@@ -17,7 +17,7 @@ const ForecastList: React.FC = () => {
       {forecast?.daily.map((day: Day, index) => {
         if (index > 4) return;
         return (
-          <Grid item sx={{ width: "182px" }}>
+          <Grid item sx={{ width: "182px" }} key={index}>
             <DayForecastCard
               icon={day.weather[0].icon}
               date={day.dt}
