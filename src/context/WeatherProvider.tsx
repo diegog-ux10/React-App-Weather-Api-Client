@@ -56,7 +56,7 @@ export const WeatherProvider = ({ children }: WeatherProviderProps) => {
     }
   };
 
-  const handleIpClick = async () => {
+  const handleIpClick = () => {
     try {
       setLoading(true);
       setWeatherData(setIpWeather);

@@ -7,22 +7,23 @@ import {
   Typography,
   Drawer,
   CircularProgress,
-  TextField,
   Stack,
+  InputBase,
+  Paper,
 } from "@mui/material";
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import PlaceIcon from "@mui/icons-material/Place";
 import SearchIcon from "@mui/icons-material/Search";
 
 import { formatDate } from "../../helper/formatDate";
-
-import background from "../../assets/sidebar-background.png";
 import {
   WeatherContext,
   WeatherContextType,
 } from "../../context/WeatherContext";
 import { theme } from "../../theme/theme";
 import { WeatherImage } from "../WeatherImage";
+
+import background from "../../assets/sidebar-background.png";
 
 const SideBar: React.FC = () => {
   const {
@@ -134,28 +135,41 @@ const SideBar: React.FC = () => {
       >
         <Box width="500px" padding="48px">
           <Stack flexDirection="row" justifyContent="space-between">
-            <TextField
-              type="text"
-              placeholder="search location"
-              onChange={handleChange}
-              size="small"
-              InputProps={{
-                startAdornment: (
-                  <SearchIcon
-                    sx={{ marginRight: 2, color: theme.palette.gray.main }}
-                  />
-                ),
-                sx: {
-                  "& input": {
-                    color: "gray.main",
-                  },
-                },
+            <Paper
+              component="form"
+              sx={{
+                padding: "4px 12px",
+                display: "flex",
+                alignItems: "center",
+                width: "auto",
+                backgroundColor: theme.palette.secondary.main,
+                border: "1px solid",
+                borderColor: "#E7E7EB",
+                borderRadius: 0,
               }}
-            />
+            >
+              <IconButton
+                type="button"
+                sx={{ p: "10px" }}
+                aria-label="search"
+                onClick={handleClick}
+              >
+                <SearchIcon sx={{ color: theme.palette.gray.main }} />
+              </IconButton>
+              <InputBase
+                sx={{ ml: 1, flex: 1, color: theme.palette.grayLight.main }}
+                placeholder="search location"
+                inputProps={{ "aria-label": "search location weather" }}
+                onChange={handleChange}
+              />
+            </Paper>
             <Button
               onClick={handleClick}
               variant="contained"
-              sx={{ backgroundColor: theme.palette.purple.main }}
+              sx={{
+                backgroundColor: theme.palette.purple.main,
+                borderRadius: 0,
+              }}
             >
               Search
             </Button>
