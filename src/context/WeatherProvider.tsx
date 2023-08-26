@@ -15,6 +15,7 @@ export const WeatherProvider = ({ children }: WeatherProviderProps) => {
   const [currentCityData, setCurrentCityData] = useState<City>();
   const [forecast, setForecast] = useState<Forecast>();
   const [loading, setLoading] = useState<boolean>(false);
+  const [isFarenheit, setIsFarenheit] = useState<boolean>(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [ipWeather, setIpWeather] = useState<City>();
 
@@ -25,18 +26,17 @@ export const WeatherProvider = ({ children }: WeatherProviderProps) => {
       try {
         setLoading(true);
         const res = await weatherApi.getWeather(city);
-  
+
         setCurrentCityData(res.data);
-  
+
         const { lon, lat } = res.data.coord;
         const data = await weatherApi.getForecast(lat, lon);
-  
+
         setForecast(data.data);
         setLoading(false);
       } catch (error) {
         console.log(error);
       }
-     
     }
   }, [currentCity]);
 
@@ -60,10 +60,10 @@ export const WeatherProvider = ({ children }: WeatherProviderProps) => {
     try {
       setLoading(true);
       setWeatherData(setIpWeather);
-      if(ipWeather) {
-        setCurrentCityData(ipWeather)
+      if (ipWeather) {
+        setCurrentCityData(ipWeather);
       }
-      setLoading(false)      
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -72,23 +72,25 @@ export const WeatherProvider = ({ children }: WeatherProviderProps) => {
   return (
     <WeatherContext.Provider
       value={{
-        search,
         currentCity,
         currentCityData,
         forecast,
-        loading,
+        handleChange,
+        handleClick,
+        handleIpClick,
         ipWeather,
+        isFarenheit,
+        loading,
+        search,
         searchOpen,
-        setSearch,
         setCurrentCity,
         setCurrentCityData,
         setForecast,
-        setLoading,
-        setSearchOpen,
         setIpWeather,
-        handleChange,
-        handleClick,
-        handleIpClick
+        setIsFarenheit,
+        setLoading,
+        setSearch,
+        setSearchOpen,
       }}
     >
       {children}

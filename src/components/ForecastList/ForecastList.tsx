@@ -16,7 +16,10 @@ const ForecastList: React.FC = () => {
     <Grid
       container
       spacing={2}
-      sx={{sm:{justifyContent: "start"}}}
+      sx={{justifyContent: {
+        sm:"start",
+        lg: "space-between"
+      }}}
     >
       {forecast?.daily.map((day: Day, index) => {
         if (index > 4) return;

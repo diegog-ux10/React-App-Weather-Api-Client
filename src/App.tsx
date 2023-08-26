@@ -5,12 +5,14 @@ import "./App.css";
 import { SideBar } from "./components/SideBar";
 
 import { WeatherContext, WeatherContextType } from "./context/WeatherContext";
-import { Box, Typography } from "@mui/material";
+import { Box, IconButton, Stack, Typography } from "@mui/material";
 import { theme } from "./theme/theme";
 import { ForecastList, WeatherDetails } from "./components";
 
 function App() {
-  const { currentCity } = useContext(WeatherContext) as WeatherContextType;
+  const { currentCity, isFarenheit, setIsFarenheit } = useContext(
+    WeatherContext
+  ) as WeatherContextType;
 
   return (
     <>
@@ -26,8 +28,8 @@ function App() {
           sx={{
             display: "flex",
             width: { xs: "100%", md: "50%", lg: "30%" },
-            height: {xs: "100vh", sm: "unset"},
-            flex: {xs:"1 1 auto"}
+            height: { xs: "100vh", sm: "unset" },
+            flex: { xs: "1 1 auto" },
           }}
         >
           {currentCity && <SideBar />}
@@ -37,12 +39,36 @@ function App() {
             width: { xs: "100%", md: "50%", lg: "70%" },
             height: "100%",
             backgroundColor: theme.palette.primary.main,
-            padding: {xs: "48px 20px", md:"40px", lg: "80px"},
+            padding: { xs: "48px 20px", md: "40px", lg: "80px" },
             display: "flex",
             flexDirection: "column",
             gap: "48px",
           }}
         >
+          <Stack flexDirection="row" gap={2} justifyContent="end" sx={{display: {xs: "none", sm: "flex"}}}>
+            <IconButton
+              sx={{
+                backgroundColor: isFarenheit
+                  ? theme.palette.grayLight.main
+                  : theme.palette.gray.main,
+              }}
+              onClick={() => setIsFarenheit(true)}
+              
+            >
+              Fº
+            </IconButton>
+            <IconButton
+              sx={{
+                backgroundColor: !isFarenheit
+                  ? theme.palette.grayLight.main
+                  : theme.palette.gray.main,
+              }}
+              onClick={() => setIsFarenheit(false)}
+            >
+              Cº
+            </IconButton>
+          </Stack>
+
           <Box>
             <ForecastList />
           </Box>

@@ -25,6 +25,7 @@ import { theme } from "../../theme/theme";
 import { WeatherImage } from "../WeatherImage";
 
 import background from "../../../public/sidebar-background.png";
+import { celsiusToFarenheit } from "../../helper/celsiusToFarenheit";
 
 const SideBar: React.FC = () => {
   const {
@@ -35,6 +36,7 @@ const SideBar: React.FC = () => {
     handleChange,
     handleClick,
     handleIpClick,
+    isFarenheit,
   } = useContext(WeatherContext) as WeatherContextType;
 
   const temp = useMemo(() => {
@@ -90,13 +92,13 @@ const SideBar: React.FC = () => {
                 fontSize="144px"
                 sx={{ color: theme.palette.grayLight.main }}
               >
-                {temp}
+                {isFarenheit ? celsiusToFarenheit(temp) : temp}
               </Typography>
               <Typography
                 fontSize="48px"
                 sx={{ color: theme.palette.gray.main }}
               >
-                ºC
+                 {isFarenheit ? "ºF" : "ºC"}
               </Typography>
             </Box>
             <Box>
