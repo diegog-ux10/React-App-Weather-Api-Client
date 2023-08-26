@@ -66,7 +66,7 @@ const SideBar: React.FC = () => {
               }}
             >
               <Button
-                sx={{ background: theme.palette.gray.main, color: "white" }}
+                sx={{ background: theme.palette.gray.main, color: "white", borderRadius: 0 }}
                 variant="contained"
                 onClick={() => setSearchOpen(true)}
               >

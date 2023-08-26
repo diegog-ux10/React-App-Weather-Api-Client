@@ -14,11 +14,26 @@ function App() {
 
   return (
     <>
-      <Box display="flex" sx={{ width: "100vw", height: "100vh" }}>
-        <Box sx={{ width: "30%" }}>{currentCity && <SideBar />}</Box>
+      <Box
+        display="flex"
+        sx={{
+          width: "100vw",
+          height: { lg: "100vh", xs: "fit-content" },
+          flexDirection: { xs: "column", md: "row" },
+        }}
+      >
         <Box
           sx={{
-            width: "70%",
+            display: "flex",
+            width: { xs: "100%", md: "50%", lg: "30%" },
+            height: { xs: "100vh", md: "1 1 auto", lg: "100%" },
+          }}
+        >
+          {currentCity && <SideBar />}
+        </Box>
+        <Box
+          sx={{
+            width: { xs: "100%", md: "50%", lg: "70%" },
             height: "100%",
             backgroundColor: theme.palette.primary.main,
             padding: "120px",
@@ -31,7 +46,7 @@ function App() {
             <ForecastList />
           </Box>
           <Box>
-            <Box sx={{display: "flex", flexDirection: "column", gap: "36px"}}>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: "36px" }}>
               <Typography
                 variant="h2"
                 sx={{
