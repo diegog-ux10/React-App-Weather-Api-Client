@@ -15,8 +15,6 @@ const ForecastList: React.FC = () => {
   return (
     <Grid container spacing={2} flexWrap="wrap" justifyContent="space-between">
       {forecast?.daily.map((day: Day, index) => {
-        console.log(day);
-        
         if (index > 4) return;
         return (
           <Grid item sx={{ width: "182px" }}>

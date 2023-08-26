@@ -20,9 +20,9 @@ export type MapCurrentCityDataReturn = {
   airPressure: DetailObject;
 };
 
-export const mapCurrentCityData = (city: City): MapCurrentCityDataReturn => {
-    console.log(city);
-    
+export const mapCurrentCityData = (
+  city: City
+): MapCurrentCityDataReturn | undefined => {
   const windSpeed = Math.round(city?.wind.speed!).toString();
   const windDeg = city?.wind.deg.toString();
 
