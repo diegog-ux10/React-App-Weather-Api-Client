@@ -25,7 +25,7 @@ const WeatherDetails: React.FC = () => {
   return (
     displayData && (
       <Grid container spacing={6}>
-        <Grid item xs={6}>
+        <Grid item xs={12} lg={6} display="grid">
           <SimpleWeatherDetailCard
             title={displayData.wind.title}
             data={displayData.wind.value}
@@ -33,7 +33,7 @@ const WeatherDetails: React.FC = () => {
             render={<DynamicArrow deg={displayData.wind.deg!} />}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} lg={6}>
           <SimpleWeatherDetailCard
             title={displayData.humidity.title}
             data={displayData.humidity.value}
@@ -41,14 +41,14 @@ const WeatherDetails: React.FC = () => {
             render={<ProgressBar value={displayData.humidity.humidityNumber} />}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} lg={6}>
           <SimpleWeatherDetailCard
             title={displayData.visibility.title}
             data={displayData.visibility.value}
             metric={displayData.visibility.metric}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} lg={6}>
           <SimpleWeatherDetailCard
             title={displayData.airPressure.title}
             data={displayData.airPressure.value}

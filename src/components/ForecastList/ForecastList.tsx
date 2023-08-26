@@ -13,11 +13,22 @@ const ForecastList: React.FC = () => {
   const { forecast } = useContext(WeatherContext) as WeatherContextType;
 
   return (
-    <Grid container spacing={2} flexWrap="wrap" justifyContent="space-between">
+    <Grid
+      container
+      spacing={2}
+      sx={{sm:{justifyContent: "start"}}}
+    >
       {forecast?.daily.map((day: Day, index) => {
         if (index > 4) return;
         return (
-          <Grid item sx={{ width: "182px" }} key={index}>
+          <Grid
+            item
+            key={index}
+            xs={6}
+            sm={4}
+            md={4}
+            lg={2.4}
+          >
             <DayForecastCard
               icon={day.weather[0].icon}
               date={day.dt}

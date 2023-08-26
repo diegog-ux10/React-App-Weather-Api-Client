@@ -25,6 +25,7 @@ export const mapCurrentCityData = (
 ): MapCurrentCityDataReturn | undefined => {
   const windSpeed = Math.round(city?.wind.speed!).toString();
   const windDeg = city?.wind.deg.toString();
+  const miles = Math.round(city.visibility / 1609)
 
   return {
     wind: {
@@ -43,7 +44,7 @@ export const mapCurrentCityData = (
 
     visibility: {
       title: "Visibility",
-      value: city.visibility.toString(),
+      value: miles.toString(),
       metric: "miles",
     },
 

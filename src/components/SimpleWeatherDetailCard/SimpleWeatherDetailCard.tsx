@@ -25,6 +25,7 @@ const SimpleWeatherDetailCard: React.FC<SimpleWeatherDetailCardProps> = ({
         display: "flex",
         justifyContent: "space-between",
         flexDirection: "column",
+        flex: "1 1 auto"
       }}
     >
       <Typography sx={{ color: theme.palette.grayLight.main, fontWeight: 500 }}>

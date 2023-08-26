@@ -18,7 +18,7 @@ function App() {
         display="flex"
         sx={{
           width: "100vw",
-          height: { lg: "100vh", xs: "fit-content" },
+          height: { xs: "fit-content", xl: "100vh" },
           flexDirection: { xs: "column", md: "row" },
         }}
       >
@@ -26,7 +26,8 @@ function App() {
           sx={{
             display: "flex",
             width: { xs: "100%", md: "50%", lg: "30%" },
-            height: { xs: "100vh", md: "1 1 auto", lg: "100%" },
+            height: {xs: "100vh", sm: "unset"},
+            flex: {xs:"1 1 auto"}
           }}
         >
           {currentCity && <SideBar />}
@@ -36,7 +37,7 @@ function App() {
             width: { xs: "100%", md: "50%", lg: "70%" },
             height: "100%",
             backgroundColor: theme.palette.primary.main,
-            padding: "120px",
+            padding: {xs: "48px 20px", md:"40px", lg: "80px"},
             display: "flex",
             flexDirection: "column",
             gap: "48px",

@@ -29,24 +29,25 @@ const DayForecastCard: React.FC<DayForecastCardProps> = ({
         backgroundColor: theme.palette.secondary.main,
         padding: "24px 18px",
         textAlign: "center",
-        height: "230px",
+        height: {md:"177px", xs: "230px"},
+        width: {md: "120px", xs: "100%"},
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between"
       }}
     >
-      <Typography sx={{ color: theme.palette.grayLight.main }}>
+      <Typography sx={{ color: theme.palette.grayLight.main, fontSize: {md: "12px", sm: "16px"} }}>
         {dayDate}
       </Typography>
       <Box textAlign="center">
-        <WeatherImage image={weather} width="90px" />
+        <WeatherImage image={weather} width="60px" />
       </Box>
       <Box display="flex" justifyContent="space-between">
         <Typography sx={{ color: theme.palette.grayLight.main }}>
-          {maxTemp}ºC
+          {Math.round(maxTemp)}ºC
         </Typography>
         <Typography sx={{ color: theme.palette.gray.main }}>
-          {minTemp}ºC
+          {Math.round(minTemp)}ºC
         </Typography>
       </Box>
     </Box>

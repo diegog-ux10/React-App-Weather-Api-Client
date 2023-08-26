@@ -14,6 +14,7 @@ import {
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import PlaceIcon from "@mui/icons-material/Place";
 import SearchIcon from "@mui/icons-material/Search";
+import CloseIcon from '@mui/icons-material/Close';
 
 import { formatDate } from "../../helper/formatDate";
 import {
@@ -66,7 +67,11 @@ const SideBar: React.FC = () => {
               }}
             >
               <Button
-                sx={{ background: theme.palette.gray.main, color: "white", borderRadius: 0 }}
+                sx={{
+                  background: theme.palette.gray.main,
+                  color: "white",
+                  borderRadius: 0,
+                }}
                 variant="contained"
                 onClick={() => setSearchOpen(true)}
               >
@@ -133,8 +138,21 @@ const SideBar: React.FC = () => {
           },
         }}
       >
-        <Box width="500px" padding="48px">
-          <Stack flexDirection="row" justifyContent="space-between">
+        <Box
+          padding="12px 36px"
+          sx={{ width: { xs: "100vw", md: "50vw", lg: "30vw" } }}
+        >
+          <Box sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "end",
+            marginBottom: "24px"
+          }}>
+            <IconButton onClick={() => setSearchOpen(false)}>
+              <CloseIcon sx={{ color: theme.palette.grayLight.main }} />
+            </IconButton>
+          </Box>
+          <Stack flexDirection="row" justifyContent="space-between" gap={1}>
             <Paper
               component="form"
               sx={{
