@@ -4,6 +4,7 @@ import { City } from "../models/city";
 import { weatherApi } from "../api/weather-api";
 import { Forecast } from "../models/forecast";
 import { setWeatherData } from "../shared/setWeatherData";
+import { ErrorRes } from "../models/ErrorRes";
 
 type WeatherProviderProps = {
   children?: React.ReactNode;
@@ -12,12 +13,14 @@ type WeatherProviderProps = {
 export const WeatherProvider = ({ children }: WeatherProviderProps) => {
   const [search, setSearch] = useState<string | undefined>();
   const [currentCity, setCurrentCity] = useState<string>("caracas");
+  const [error, setError] = useState<string>("");
   const [currentCityData, setCurrentCityData] = useState<City>();
   const [forecast, setForecast] = useState<Forecast>();
   const [loading, setLoading] = useState<boolean>(false);
   const [isFarenheit, setIsFarenheit] = useState<boolean>(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [ipWeather, setIpWeather] = useState<City>();
+  const [dialogOpen, setDialogOpen] = useState<boolean>(false);
 
   useEffect(() => {
     fetchData(currentCity);
@@ -35,7 +38,12 @@ export const WeatherProvider = ({ children }: WeatherProviderProps) => {
         setForecast(data.data);
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        const errorData: ErrorRes = error as ErrorRes;
+        
+        if(errorData) {
+          setError(errorData.response.data.message)
+        }
+        setDialogOpen(true)
       }
     }
   }, [currentCity]);
@@ -65,8 +73,17 @@ export const WeatherProvider = ({ children }: WeatherProviderProps) => {
       }
       setLoading(false);
     } catch (error) {
+      setDialogOpen(true);
+      console.log("se disparo el error");
       console.log(error);
     }
+  };
+
+  const handleDialogClose = () => {
+    setCurrentCity("caracas");
+    setDialogOpen(false);
+    setError("");
+    setLoading(false);
   };
 
   return (
@@ -91,6 +108,11 @@ export const WeatherProvider = ({ children }: WeatherProviderProps) => {
         setLoading,
         setSearch,
         setSearchOpen,
+        dialogOpen,
+        setDialogOpen,
+        handleDialogClose,
+        error,
+        setError,
       }}
     >
       {children}

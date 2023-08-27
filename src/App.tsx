@@ -5,12 +5,12 @@ import "./App.css";
 import { SideBar } from "./components/SideBar";
 
 import { WeatherContext, WeatherContextType } from "./context/WeatherContext";
-import { Box, IconButton, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack, Typography } from "@mui/material";
 import { theme } from "./theme/theme";
 import { ForecastList, WeatherDetails } from "./components";
 
 function App() {
-  const { currentCity, isFarenheit, setIsFarenheit } = useContext(
+  const { currentCity, isFarenheit, setIsFarenheit, dialogOpen, handleDialogClose, error } = useContext(
     WeatherContext
   ) as WeatherContextType;
 
@@ -45,28 +45,42 @@ function App() {
             gap: "48px",
           }}
         >
-          <Stack flexDirection="row" gap={2} justifyContent="end" sx={{display: {xs: "none", sm: "flex"}}}>
-            <IconButton
+          <Stack
+            flexDirection="row"
+            gap={2}
+            justifyContent="end"
+            sx={{ display: { xs: "none", sm: "flex" } }}
+          >
+            <Avatar
               sx={{
                 backgroundColor: isFarenheit
                   ? theme.palette.grayLight.main
                   : theme.palette.gray.main,
+                color: !isFarenheit
+                  ? theme.palette.grayLight.main
+                  : theme.palette.secondary.main,
               }}
               onClick={() => setIsFarenheit(true)}
-              
             >
-              Fº
-            </IconButton>
-            <IconButton
+              <Typography sx={{ fontSize: "18px", fontWeight: 700 }}>
+                ºF
+              </Typography>
+            </Avatar>
+            <Avatar
               sx={{
                 backgroundColor: !isFarenheit
                   ? theme.palette.grayLight.main
                   : theme.palette.gray.main,
+                color: isFarenheit
+                  ? theme.palette.grayLight.main
+                  : theme.palette.secondary.main,
               }}
               onClick={() => setIsFarenheit(false)}
             >
-              Cº
-            </IconButton>
+              <Typography sx={{ fontSize: "18px", fontWeight: 700 }}>
+                ºC
+              </Typography>
+            </Avatar>
           </Stack>
 
           <Box>
@@ -89,6 +103,27 @@ function App() {
           </Box>
         </Box>
       </Box>
+
+      <Dialog
+        open={dialogOpen}
+        onClose={handleDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {error}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Try Again.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogClose} autoFocus>
+            Ok
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }
