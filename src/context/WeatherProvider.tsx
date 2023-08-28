@@ -58,36 +58,36 @@ export const WeatherProvider = ({ children }: WeatherProviderProps) => {
     }
   }, []);
 
+  useEffect(() => {
+    setWeatherData(setIpWeather);
+  }, [])
+
   const handleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
     setSearch(e.target.value as string);
   };
 
   const handleClick = () => {
-    console.log(search);
-
     if (search) {
       setCurrentCity(search);
     }
-
     if (searchOpen) {
       setSearchOpen(false);
     }
-
     setSearchHistory((oldState: string[]): string[] => {
       const formatOldState = oldState.map((search) => search.toLowerCase());
       if (formatOldState.includes(search?.toLowerCase() as string))
         return [...formatOldState];
       return [...formatOldState, search as string];
     });
-
     saveLocalStorage(searchHistory);
   };
 
   const handleIpClick = () => {
     try {
       setLoading(true);
-      setWeatherData(setIpWeather);
       if (ipWeather) {
+        console.log("prueba");
+        
         setCurrentCityData(ipWeather);
       }
       setLoading(false);
