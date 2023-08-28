@@ -17,14 +17,12 @@ import {
   WeatherContext,
   WeatherContextType,
 } from "../../context/WeatherContext";
+import { SelectSearchHistory } from "../SelectSearchHistory";
 
 const SearchModal: React.FC = () => {
-  const {
-    searchOpen,
-    setSearchOpen,
-    handleChange,
-    handleClick,
-  } = useContext(WeatherContext) as WeatherContextType;
+  const { searchOpen, setSearchOpen, handleChange, handleClick } = useContext(
+    WeatherContext
+  ) as WeatherContextType;
 
   return (
     <Drawer
@@ -36,9 +34,14 @@ const SearchModal: React.FC = () => {
         },
       }}
     >
-      <Stack
+      <Box
         padding="12px 36px"
-        sx={{ width: { xs: "100vw", md: "50vw", lg: "30vw" } }}
+        sx={{
+          width: { xs: "100vw", md: "50vw", lg: "30vw" },
+          display: "flex",
+          flexDirection: "column",
+          gap: "48px",
+        }}
       >
         <Box
           sx={{
@@ -64,6 +67,9 @@ const SearchModal: React.FC = () => {
               border: "1px solid",
               borderColor: "#E7E7EB",
               borderRadius: 0,
+              "&hover": {
+                borderColor: "black",
+              },
             }}
           >
             <IconButton
@@ -92,7 +98,8 @@ const SearchModal: React.FC = () => {
             Search
           </Button>
         </Stack>
-      </Stack>
+        <SelectSearchHistory />
+      </Box>
     </Drawer>
   );
 };

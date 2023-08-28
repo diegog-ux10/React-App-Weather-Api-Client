@@ -5,6 +5,8 @@ import { weatherApi } from "../api/weather-api";
 import { Forecast } from "../models/forecast";
 import { setWeatherData } from "../shared/setWeatherData";
 import { ErrorRes } from "../models/ErrorRes";
+import { saveLocalStorage } from "../helper/saveLocarlStorage";
+import { loadLocalStorage } from "../helper/loadLocalStorage";
 
 type WeatherProviderProps = {
   children?: React.ReactNode;
@@ -21,6 +23,7 @@ export const WeatherProvider = ({ children }: WeatherProviderProps) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [ipWeather, setIpWeather] = useState<City>();
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
+  const [searchHistory, setSearchHistory] = useState<string[]>([]);
 
   useEffect(() => {
     fetchData(currentCity);
@@ -39,17 +42,24 @@ export const WeatherProvider = ({ children }: WeatherProviderProps) => {
         setLoading(false);
       } catch (error) {
         const errorData: ErrorRes = error as ErrorRes;
-        
-        if(errorData) {
-          setError(errorData.response.data.message)
+
+        if (errorData) {
+          setError(errorData.response.data.message);
         }
-        setDialogOpen(true)
+        setDialogOpen(true);
       }
     }
   }, [currentCity]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
+  useEffect(() => {
+    const data = loadLocalStorage();
+    if (data) {
+      setSearchHistory(data);
+    }
+  }, []);
+
+  const handleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
+    setSearch(e.target.value as string);
   };
 
   const handleClick = () => {
@@ -62,6 +72,15 @@ export const WeatherProvider = ({ children }: WeatherProviderProps) => {
     if (searchOpen) {
       setSearchOpen(false);
     }
+
+    setSearchHistory((oldState: string[]): string[] => {
+      const formatOldState = oldState.map((search) => search.toLowerCase());
+      if (formatOldState.includes(search?.toLowerCase() as string))
+        return [...formatOldState];
+      return [...formatOldState, search as string];
+    });
+
+    saveLocalStorage(searchHistory);
   };
 
   const handleIpClick = () => {
@@ -84,6 +103,18 @@ export const WeatherProvider = ({ children }: WeatherProviderProps) => {
     setDialogOpen(false);
     setError("");
     setLoading(false);
+  };
+
+  const handleSearchHistoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    try {
+      setLoading(true);
+      setCurrentCity(event.target.value)
+      setLoading(false);
+    } catch (error) {
+      setDialogOpen(true);
+      console.log("se disparo el error");
+      console.log(error);
+    }
   };
 
   return (
@@ -113,6 +144,8 @@ export const WeatherProvider = ({ children }: WeatherProviderProps) => {
         handleDialogClose,
         error,
         setError,
+        searchHistory,
+        handleSearchHistoryChange,
       }}
     >
       {children}
