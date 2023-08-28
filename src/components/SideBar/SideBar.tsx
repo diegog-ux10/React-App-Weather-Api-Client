@@ -24,7 +24,7 @@ import {
 import { theme } from "../../theme/theme";
 import { WeatherImage } from "../WeatherImage";
 
-import background from "/src/sidebar-background.png?url";
+import background from "/src/assets/sidebar-background.png?url";
 import { celsiusToFarenheit } from "../../helper/celsiusToFarenheit";
 
 const SideBar: React.FC = () => {

@@ -6,6 +6,7 @@ App Weather proyect developed with:
 2. Typescript
 3. Vite
 4. Material UI
+5. axios
 
 ## Intallation
 

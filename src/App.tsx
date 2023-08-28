@@ -62,7 +62,7 @@ function App() {
               }}
               onClick={() => setIsFarenheit(true)}
             >
-              <Typography sx={{ fontSize: "18px", fontWeight: 700 }}>
+              <Typography sx={{ fontSize: "18px", fontWeight: 700, cursor: "pointer" }}>
                 ºF
               </Typography>
             </Avatar>
@@ -77,7 +77,7 @@ function App() {
               }}
               onClick={() => setIsFarenheit(false)}
             >
-              <Typography sx={{ fontSize: "18px", fontWeight: 700 }}>
+              <Typography sx={{ fontSize: "18px", fontWeight: 700, cursor: "pointer" }}>
                 ºC
               </Typography>
             </Avatar>

@@ -2,16 +2,16 @@ import React from "react";
 
 import { Box } from "@mui/material";
 
-import HeavyCloud from "/src/HeavyCloud.png?url";
-import Clear from "/src/Clear.png?url";
-import Hail from "/src/Hail.png?url";
-import HeavyRain from "/src/HeavyRain.png?url";
-import LightRain from "/src/LightRain.png?url";
-import LightCloud from "/src/LightCloud.png?url";
-import Shower from "/src/Shower.png?url";
-import Snow from "/src/Snow.png?url";
-import Thunderstorm from "/src/Thunderstorm.png?url";
-import Sleet from "/src/Sleet.png?url";
+import HeavyCloud from "/src/assets/HeavyCloud.png?url";
+import Clear from "/src/assets/Clear.png?url";
+import Hail from "/src/assets/Hail.png?url";
+import HeavyRain from "/src/assets/HeavyRain.png?url";
+import LightRain from "/src/assets/LightRain.png?url";
+import LightCloud from "/src/assets/LightCloud.png?url";
+import Shower from "/src/assets/Shower.png?url";
+import Snow from "/src/assets/Snow.png?url";
+import Thunderstorm from "/src/assets/Thunderstorm.png?url";
+import Sleet from "/src/assets/Sleet.png?url";
 
 export type WeatherImageProps = {
   image: string;
@@ -33,6 +33,7 @@ const WeatherImage: React.FC<WeatherImageProps> = ({ image, width }) => {
       )}
       {image === "Sleet" && <img src={Sleet} alt="" />}
       {image === "Light Rain" && <img src={LightRain} alt="" width={width} />}
+      {image === "Mist" && <img src={HeavyCloud} alt="" width={width} />}
     </Box>
   );
 };
