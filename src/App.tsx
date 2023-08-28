@@ -5,14 +5,30 @@ import "./App.css";
 import { SideBar } from "./components/SideBar";
 
 import { WeatherContext, WeatherContextType } from "./context/WeatherContext";
-import { Avatar, Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack, Typography } from "@mui/material";
-import { theme } from "./theme/theme";
+import {
+  Avatar,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Stack,
+  Typography,
+  Box
+} from "@mui/material";
+
 import { ForecastList, WeatherDetails } from "./components";
 
 function App() {
-  const { currentCity, isFarenheit, setIsFarenheit, dialogOpen, handleDialogClose, error } = useContext(
-    WeatherContext
-  ) as WeatherContextType;
+  const {
+    currentCity,
+    isFarenheit,
+    setIsFarenheit,
+    dialogOpen,
+    handleDialogClose,
+    error,
+  } = useContext(WeatherContext) as WeatherContextType;
 
   return (
     <>
@@ -34,11 +50,11 @@ function App() {
         >
           {currentCity && <SideBar />}
         </Box>
-        <Box
+        <Stack
           sx={{
             width: { xs: "100%", md: "50%", lg: "70%" },
             height: "100%",
-            backgroundColor: theme.palette.primary.main,
+            backgroundColor: "#100E1D",
             padding: { xs: "48px 20px", md: "40px", lg: "80px" },
             display: "flex",
             flexDirection: "column",
@@ -54,54 +70,60 @@ function App() {
             <Avatar
               sx={{
                 backgroundColor: isFarenheit
-                  ? theme.palette.grayLight.main
-                  : theme.palette.gray.main,
+                  ? "#E7E7EB"
+                  : "#585676",
                 color: !isFarenheit
-                  ? theme.palette.grayLight.main
-                  : theme.palette.secondary.main,
+                  ? "#E7E7EB"
+                  : "#110E3C",
               }}
               onClick={() => setIsFarenheit(true)}
             >
-              <Typography sx={{ fontSize: "18px", fontWeight: 700, cursor: "pointer" }}>
+              <Typography
+                sx={{ fontSize: "18px", fontWeight: 700, cursor: "pointer" }}
+              >
                 ºF
               </Typography>
             </Avatar>
             <Avatar
               sx={{
                 backgroundColor: !isFarenheit
-                  ? theme.palette.grayLight.main
-                  : theme.palette.gray.main,
+                  ? "#E7E7EB"
+                  : "#585676",
                 color: isFarenheit
-                  ? theme.palette.grayLight.main
-                  : theme.palette.secondary.main,
+                  ? "#E7E7EB"
+                  : "#110E3C",
               }}
               onClick={() => setIsFarenheit(false)}
             >
-              <Typography sx={{ fontSize: "18px", fontWeight: 700, cursor: "pointer" }}>
+              <Typography
+                sx={{ fontSize: "18px", fontWeight: 700, cursor: "pointer" }}
+              >
                 ºC
               </Typography>
             </Avatar>
           </Stack>
 
-          <Box>
+          <Stack>
             <ForecastList />
-          </Box>
-          <Box>
-            <Box sx={{ display: "flex", flexDirection: "column", gap: "36px" }}>
+          </Stack>
+          <Stack>
+            <Stack
+              sx={{ display: "flex", flexDirection: "column", gap: "36px" }}
+            >
               <Typography
                 variant="h2"
                 sx={{
                   fontWeight: 700,
                   fontSize: "24px",
-                  color: theme.palette.grayLight.main,
+                  color: "#E7E7EB",
                 }}
               >
                 Todays HighLights
               </Typography>
               <WeatherDetails />
-            </Box>
-          </Box>
-        </Box>
+            </Stack>
+          </Stack>
+        </Stack>
       </Box>
 
       <Dialog
@@ -110,9 +132,7 @@ function App() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          {error}
-        </DialogTitle>
+        <DialogTitle id="alert-dialog-title">{error}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Try Again.

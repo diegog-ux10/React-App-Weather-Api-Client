@@ -1,11 +1,10 @@
 import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import { Typography } from '@mui/material';
+import { Typography, Stack } from '@mui/material';
 
 import LinearProgress, {
   linearProgressClasses,
 } from "@mui/material/LinearProgress";
-import { theme } from "../../theme/theme";
+
 
 export type ProgressBarProps = {
   value: number
@@ -28,17 +27,17 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 
 const ProgressBar: React.FC<ProgressBarProps> = ({ value }) => {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Box sx={{width: "100%", display: "flex", justifyContent:"space-between"}}>
-        <Typography sx={{color: theme.palette.gray.main}}>0</Typography>
-        <Typography sx={{color: theme.palette.gray.main}}>50</Typography>
-        <Typography sx={{color: theme.palette.gray.main}}>100</Typography>
-      </Box>
+    <Stack sx={{ flexGrow: 1 }}>
+      <Stack sx={{width: "100%", display: "flex", justifyContent:"space-between", flexDirection: "row"}}>
+        <Typography sx={{color: "#585676"}}>0</Typography>
+        <Typography sx={{color: "#585676"}}>50</Typography>
+        <Typography sx={{color: "#585676"}}>100</Typography>
+      </Stack>
       <BorderLinearProgress variant="determinate" value={value} />
-      <Box sx={{width: "100%", display: "flex", justifyContent:"end"}}>
-        <Typography sx={{color: theme.palette.gray.main, width: "fit-content"}}>%</Typography>
-      </Box>
-    </Box>
+      <Stack sx={{width: "100%", display: "flex", justifyContent:"end"}}>
+        <Typography sx={{color: "#585676", width: "fit-content"}}>%</Typography>
+      </Stack>
+    </Stack>
   );
 }
 

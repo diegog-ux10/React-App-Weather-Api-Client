@@ -1,7 +1,7 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import {  Typography, Stack, Box } from "@mui/material";
 
-import { theme } from "../../theme/theme";
+
 import { formatDate } from "../../helper/formatDate";
 import { WeatherImage } from "../WeatherImage";
 import { useContext } from "react";
@@ -33,7 +33,7 @@ const DayForecastCard: React.FC<DayForecastCardProps> = ({
   return (
     <Box
       sx={{
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: "#1E213A",
         padding: "24px 18px",
         textAlign: "center",
         height: { md: "177px", xs: "230px" },
@@ -45,29 +45,29 @@ const DayForecastCard: React.FC<DayForecastCardProps> = ({
     >
       <Typography
         sx={{
-          color: theme.palette.grayLight.main,
+          color: "#E7E7EB",
           fontSize: { md: "12px", sm: "16px" },
         }}
       >
         {dayDate}
       </Typography>
-      <Box textAlign="center">
+      <Stack textAlign="center">
         <WeatherImage image={weather} width="60px" />
-      </Box>
-      <Box display="flex" justifyContent="space-between">
-        <Typography sx={{ color: theme.palette.grayLight.main }}>
+      </Stack>
+      <Stack display="flex" flexDirection="row" justifyContent="space-between">
+        <Typography sx={{ color: "#E7E7EB" }}>
           {isFarenheit
             ? celsiusToFarenheit(maxTemp.toString())
             : Math.round(maxTemp)}
           {isFarenheit ? "ºF" : "ºC"}
         </Typography>
-        <Typography sx={{ color: theme.palette.gray.main }}>
+        <Typography sx={{ color: "#585676" }}>
           {isFarenheit
             ? celsiusToFarenheit(maxTemp.toString())
             : Math.round(minTemp)}
           {isFarenheit ? "ºF" : "ºC"}
         </Typography>
-      </Box>
+      </Stack>
     </Box>
   );
 };

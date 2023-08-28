@@ -1,7 +1,7 @@
 import React from "react";
-import { Box, IconButton, Typography } from '@mui/material';
+import {  IconButton, Typography, Stack } from '@mui/material';
 import NavigationIcon from '@mui/icons-material/Navigation';
-import { theme } from "../../theme/theme";
+
 
 export type DynamicArrowProps = {
 	deg: string
@@ -9,20 +9,20 @@ export type DynamicArrowProps = {
 
 const DynamicArrow: React.FC<DynamicArrowProps> = ({deg}) => {
   return (
-    <Box display="flex" justifyContent="center" alignItems="center" gap={1}>
+    <Stack display="flex" justifyContent="center" alignItems="center" gap={1} flexDirection="row">
       <IconButton
-        sx={{ backgroundColor: theme.palette.gray.main }}
+        sx={{ backgroundColor: "#585676" }}
         size="small"
       >
         <NavigationIcon
           sx={{
-            color: theme.palette.grayLight.main,
+            color: "#E7E7EB",
             transform: `rotate(${deg}deg)`,
           }}
         />
       </IconButton>
-      <Typography sx={{ color: theme.palette.grayLight.main }}>WSW</Typography>
-    </Box>
+      <Typography sx={{ color: "#E7E7EB" }}>WSW</Typography>
+    </Stack>
   );
 };
 
