@@ -1,27 +1,27 @@
-# React + TypeScript + Vite
+# App Clima 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+App Weather proyect developed with:
 
-Currently, two official plugins are available:
+1. React
+2. Typescript
+3. Vite
+4. Material UI
+5. axios
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Intallation
 
-## Expanding the ESLint configuration
+- yarn
+- npm install
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### error: does not load the content
 
-- Configure the top-level `parserOptions` property like this:
+Given that the application requests client data in order to know the current weather of the city where the request is being made; Site content will not load until certain permissions are enabled.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+follow these steps:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. click on the lock icon that appears at the beginning of the url field in your browser
+2. click site settings
+3. in the new window with the list of permissions that opened, look for Unsafe Content, and set it to "allow"
+4. Now you can test the application without any inconvenience
+
+
