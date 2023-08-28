@@ -2,16 +2,16 @@ import React from "react";
 
 import { Box } from "@mui/material";
 
-import HeavyCloud from "/HeavyCloud.png";
-import Clear from "/public/Clear.png";
-import Hail from "/public/Hail.png";
-import HeavyRain from "/public/HeavyRain.png";
-import LightRain from "/public/LightRain.png";
-import LightCloud from "/public/LightCloud.png";
-import Shower from "/public/Shower.png";
-import Snow from "/public/Snow.png";
-import Thunderstorm from "/public/Thunderstorm.png";
-import Sleet from "/public/Sleet.png";
+import HeavyCloud from "/src/HeavyCloud.png?url";
+import Clear from "/src/Clear.png?url";
+import Hail from "/src/Hail.png?url";
+import HeavyRain from "/src/HeavyRain.png?url";
+import LightRain from "/src/LightRain.png?url";
+import LightCloud from "/src/LightCloud.png?url";
+import Shower from "/src/Shower.png?url";
+import Snow from "/src/Snow.png?url";
+import Thunderstorm from "/src/Thunderstorm.png?url";
+import Sleet from "/src/Sleet.png?url";
 
 export type WeatherImageProps = {
   image: string;
