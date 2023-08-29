@@ -8,6 +8,7 @@ import {
   InputBase,
   Paper,
   Box,
+  Typography,
 } from "@mui/material";
 
 import SearchIcon from "@mui/icons-material/Search";
@@ -20,9 +21,13 @@ import {
 import { SelectSearchHistory } from "../SelectSearchHistory";
 
 const SearchModal: React.FC = () => {
-  const { searchOpen, setSearchOpen, handleChange, handleClick } = useContext(
-    WeatherContext
-  ) as WeatherContextType;
+  const {
+    searchOpen,
+    setSearchOpen,
+    handleChange,
+    handleClick,
+    searchHistory,
+  } = useContext(WeatherContext) as WeatherContextType;
 
   return (
     <Drawer
@@ -98,7 +103,11 @@ const SearchModal: React.FC = () => {
             Search
           </Button>
         </Stack>
-        <SelectSearchHistory />
+        {searchHistory.length ? (
+          <SelectSearchHistory />
+        ) : (
+          <Typography>There is not any search</Typography>
+        )}
       </Box>
     </Drawer>
   );
