@@ -15,7 +15,8 @@ import {
   DialogTitle,
   Stack,
   Typography,
-  Box
+  Box,
+  CircularProgress,
 } from "@mui/material";
 
 import { ForecastList, WeatherDetails } from "./components";
@@ -28,6 +29,7 @@ function App() {
     dialogOpen,
     handleDialogClose,
     error,
+    loading,
   } = useContext(WeatherContext) as WeatherContextType;
 
   return (
@@ -50,7 +52,7 @@ function App() {
         >
           {currentCity && <SideBar />}
         </Box>
-        <Stack
+        <Box
           sx={{
             width: { xs: "100%", md: "50%", lg: "70%" },
             height: "100%",
@@ -69,12 +71,8 @@ function App() {
           >
             <Avatar
               sx={{
-                backgroundColor: isFarenheit
-                  ? "#E7E7EB"
-                  : "#585676",
-                color: !isFarenheit
-                  ? "#E7E7EB"
-                  : "#110E3C",
+                backgroundColor: isFarenheit ? "#E7E7EB" : "#585676",
+                color: !isFarenheit ? "#E7E7EB" : "#110E3C",
               }}
               onClick={() => setIsFarenheit(true)}
             >
@@ -86,12 +84,8 @@ function App() {
             </Avatar>
             <Avatar
               sx={{
-                backgroundColor: !isFarenheit
-                  ? "#E7E7EB"
-                  : "#585676",
-                color: isFarenheit
-                  ? "#E7E7EB"
-                  : "#110E3C",
+                backgroundColor: !isFarenheit ? "#E7E7EB" : "#585676",
+                color: isFarenheit ? "#E7E7EB" : "#110E3C",
               }}
               onClick={() => setIsFarenheit(false)}
             >
@@ -103,13 +97,15 @@ function App() {
             </Avatar>
           </Stack>
 
-          <Stack>
-            <ForecastList />
-          </Stack>
-          <Stack>
-            <Stack
-              sx={{ display: "flex", flexDirection: "column", gap: "36px" }}
-            >
+          <Box>
+            {!loading ? (
+              <ForecastList />
+            ) : (
+              <CircularProgress sx={{ color: "#3C47E9" }} />
+            )}
+          </Box>
+          <Box>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: "36px" }}>
               <Typography
                 variant="h2"
                 sx={{
@@ -120,10 +116,14 @@ function App() {
               >
                 Todays HighLights
               </Typography>
-              <WeatherDetails />
-            </Stack>
-          </Stack>
-        </Stack>
+              {!loading ? (
+                <WeatherDetails />
+              ) : (
+                <CircularProgress sx={{ color: "#3C47E9" }} />
+              )}
+            </Box>
+          </Box>
+        </Box>
       </Box>
 
       <Dialog

@@ -80,7 +80,7 @@ const SideBar: React.FC = () => {
               </IconButton>
             </Box>
             <WeatherImage image={currentCityData?.weather[0].main!} />
-            <Stack display="flex" alignItems="center">
+            <Stack display="flex" alignItems="center" flexDirection="row">
               <Typography fontSize="144px" sx={{ color: "#E7E7EB" }}>
                 {isFarenheit ? celsiusToFarenheit(temp) : temp}
               </Typography>
@@ -98,7 +98,7 @@ const SideBar: React.FC = () => {
                 Today - {formatDate(currentCityData?.dt!)}
               </Typography>
             </Stack>
-            <Stack display="flex">
+            <Stack display="flex" flexDirection="row">
               <PlaceIcon sx={{ color: "#88869D" }} />
               <Typography fontSize="18px" sx={{ color: "#585676" }}>
                 {currentCityData?.name}
@@ -106,7 +106,7 @@ const SideBar: React.FC = () => {
             </Stack>
           </>
         ) : (
-          <CircularProgress />
+          <CircularProgress sx={{color: "#3C47E9"}} />
         )}
       </Box>
       <SearchModal />
